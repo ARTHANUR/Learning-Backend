@@ -1,15 +1,18 @@
-const dotenv = require("dotenv");
-const express = require("express");
+const dotenv = require('dotenv');
+const express = require('express');
 const app = express();
-dotenv.config({ path: "./config.env" });
-require("./db/conn.js");
+dotenv.config({ path: './config.env' });
+require('./db/conn');
 
-// Initialize express.json() before using the router
+// Ensure express.json() is initialized before using the router
 app.use(express.json());
 
-app.use(require("./router/auth.js"));
+// Use the router middleware
+app.use(require('./router/auth'));
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is up and running at ${PORT}`);

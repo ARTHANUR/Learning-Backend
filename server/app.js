@@ -4,28 +4,13 @@ const app = express();
 dotenv.config({ path: "./config.env" });
 require("./db/conn.js");
 
-const PORT = process.env.PORT;
+// Initialize express.json() before using the router
+app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("this is HOME page");
-});
+app.use(require("./router/auth.js"));
 
-app.get("/signup", (req, res) => {
-    res.send("this is SIGNUP page");
-});
-
-app.get("/signin", (req, res) => {
-    res.send("this is LOGIN page");
-});
-
-app.get("/about", (req, res) => {
-    res.send("this is ABOUT page");
-});
-
-app.get("/contact", (req, res) => {
-    res.send("this is CONTACT page");
-});
+const PORT = process.env.PORT || 3000; 
 
 app.listen(PORT, () => {
-    console.log(`server is up and running at ${PORT}`);
+    console.log(`Server is up and running at ${PORT}`);
 });
